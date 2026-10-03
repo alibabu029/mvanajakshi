@@ -1,0 +1,7 @@
+"use client";
+import {useState} from "react"; import {buildWhatsAppMessage,whatsappUrl} from "@/lib/whatsapp"; import {products} from "@/lib/content";
+export function ContactForm(){const [sent,setSent]=useState<string|null>(null);
+function submit(e:React.FormEvent<HTMLFormElement>){e.preventDefault(); const f=new FormData(e.currentTarget); if(f.get("company")) return;
+const name=String(f.get("name")||"").trim(),phone=String(f.get("phone")||"").trim(); if(!name||!phone)return;
+const data={name,phone,email:String(f.get("email")||""),service:String(f.get("service")||""),message:String(f.get("message")||"")}; const url=whatsappUrl(buildWhatsAppMessage(data)); window.open(url,"_blank","noopener,noreferrer"); setSent(url);}
+return <form onSubmit={submit} className="form"><input name="company" className="hp" tabIndex={-1} autoComplete="off"/><label>Name*<input name="name" required/></label><label>Phone*<input name="phone" required pattern="[+0-9 -]+"/></label><label>Email<input name="email" type="email"/></label><label>Interested in<select name="service">{products.map(p=><option key={p.name}>{p.name}</option>)}<option>Combo / Gift Pack</option><option>Something else</option></select></label><label>Message<textarea name="message" rows={4}/></label><button className="btn" type="submit">Send on WhatsApp</button>{sent&&<p>Opening WhatsApp… <a href={sent}>Tap here if it did not open.</a></p>}</form>}
