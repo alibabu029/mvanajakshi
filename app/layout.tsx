@@ -1,0 +1,5 @@
+import type {Metadata} from "next"; import {Fraunces,Mulish} from "next/font/google"; import "./globals.css"; import {Providers} from "@/components/Providers"; import {Header} from "@/components/Header"; import {Footer} from "@/components/Footer";
+const heading=Fraunces({subsets:["latin"],display:"swap",variable:"--font-heading"}); const body=Mulish({subsets:["latin"],display:"swap",variable:"--font-body"});
+const base=process.env.NEXT_PUBLIC_SITE_URL||"https://www.example.com";
+export const metadata:Metadata={metadataBase:new URL(base),title:{default:"Bujji Non-Veg Pickles | Homemade Andhra Pickles",template:"%s | Bujji Non-Veg Pickles"},description:"Fresh, homemade non-veg pickles from Tenali, Andhra Pradesh. Chicken, mutton, prawn & fish pickle delivered pan-India."};
+export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body className={`${heading.variable} ${body.variable}`}><Providers><Header/><main>{children}</main><Footer/></Providers></body></html>}
