@@ -1,0 +1,1 @@
+import type {MetadataRoute} from "next"; export default function sitemap():MetadataRoute.Sitemap{const b=process.env.NEXT_PUBLIC_SITE_URL||"https://www.example.com";return ["","/pickles","/about","/shipping","/contact"].map(p=>({url:b+p,lastModified:new Date()}));}
