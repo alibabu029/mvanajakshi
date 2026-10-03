@@ -1,0 +1,1 @@
+import Link from "next/link"; export default function NotFound(){return <section className="section"><div className="wrap"><div className="eyebrow">404</div><h1>This jar is not on the shelf.</h1><p>The page you are looking for could not be found.</p><Link className="btn" href="/">Back home</Link></div></section>}
